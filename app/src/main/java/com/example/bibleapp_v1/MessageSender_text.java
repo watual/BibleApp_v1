@@ -1,8 +1,10 @@
 package com.example.bibleapp_v1;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MessageSender_text extends AppCompatActivity {
 
@@ -21,16 +24,18 @@ public class MessageSender_text extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_sender_text);
 
-
         AssetManager am = getResources().getAssets();
         InputStream is = null;
-        byte buf[] = new byte[1024];
-        String text = "";
 
         try {
-            is = am.open("test1.txt");
-            if(is.read(buf) > 0){
-                text = new String(buf);
+            is = am.open("test2.txt");
+
+            BufferedReader bufrd = new BufferedReader(new InputStreamReader(is));
+
+            String text = "";
+            String line = "";
+            while((line = bufrd.readLine()) != null){
+                text += line;
             }
 
             TextView b1 = (TextView)findViewById(R.id.b1);
@@ -47,5 +52,10 @@ public class MessageSender_text extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void go_MessageSender_send(View v) {
+        Intent intent = new Intent(MessageSender_text.this , MessageSender_send.class);
+        startActivity(intent);
     }
 }
