@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.SEND_SMS};
     private static final int PERMISSIONS_REQUEST_CODE = 100;
 
-    private static final int REQUEST_CODE = 100;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
