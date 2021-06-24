@@ -72,6 +72,12 @@ public class MessageSender_text extends AppCompatActivity {
         view1.setLayoutParams(lp);
         //뷰 추가
         container.addView(view1);
+        view1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                go_MessageSender_send(v);
+            }
+        });
 
     }
     public void go_MessageSender_send(View v) {
