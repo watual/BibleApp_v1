@@ -65,8 +65,11 @@
         android:id="@+id/errorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="460dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

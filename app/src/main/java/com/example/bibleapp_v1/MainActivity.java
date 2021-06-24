@@ -10,10 +10,14 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btn_messageSender;
+
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.SEND_SMS};
+    private static final int PERMISSIONS_REQUEST_CODE = 100;
 
     private static final int REQUEST_CODE = 100;
 
@@ -31,36 +35,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) +
-                ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS))
-                != PackageManager.PERMISSION_GRANTED) {
-
-// Permission is not granted
-// Should we show an explanation?
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,"Manifest.permission.READ_SMS") ||
-                    ActivityCompat.shouldShowRequestPermissionRationale(this,"Manifest.permission.READ_SMS")) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{"Manifest.permission.READ_SMS, Manifest.permission.SEND_SMS"},
-                        REQUEST_CODE);
-
-                // REQUEST_CODE is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        }
-
-        else {
-            // Permission has already been granted
+        int check_permission_sendSns = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        if(check_permission_sendSns != PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(getApplicationContext(), "권한 허용안됨", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
         }
     }
 }
