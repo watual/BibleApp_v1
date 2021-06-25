@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,8 +25,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class MessageSender_text extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

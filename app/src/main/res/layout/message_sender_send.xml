@@ -7,9 +7,10 @@
 
     <Button
         android:id="@+id/sendMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="109dp"
+        android:layout_height="67dp"
         android:text="전송"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="@+id/text_number"
         app:layout_constraintTop_toBottomOf="@+id/text_number" />
 
@@ -17,12 +18,14 @@
         android:id="@+id/text_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="196dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="01088680103"
-        app:layout_constraintStart_toStartOf="@+id/text_message"
-        app:layout_constraintTop_toBottomOf="@+id/text_message" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/text_message" />
 
     <TextView
         android:id="@+id/textView"
@@ -50,15 +53,18 @@
 
     <EditText
         android:id="@+id/text_message"
-        android:layout_width="265dp"
-        android:layout_height="157dp"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="36dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
         android:text="messageToSend"
-        app:layout_constraintStart_toStartOf="@+id/textView"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
