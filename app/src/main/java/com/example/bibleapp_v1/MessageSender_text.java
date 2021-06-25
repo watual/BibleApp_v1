@@ -25,6 +25,8 @@ import java.io.InputStreamReader;
 
 public class MessageSender_text extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +45,9 @@ public class MessageSender_text extends AppCompatActivity {
 
             String line = "";
             while((line = bufrd.readLine()) != null){
-                if(line.indexOf("창")==0){
+                if(line.indexOf(MainActivity.bibleParagraph[0])==0){
                     make_textView(line);
+                    make_textView("");
                 }
             }
 
@@ -63,18 +66,19 @@ public class MessageSender_text extends AppCompatActivity {
     private void make_textView(String str) {
         LinearLayout container = (LinearLayout) findViewById(R.id.message_sender_text_scrollview);
         //TextView 생성
-        TextView view1 = new TextView(this);
-        view1.setText(str);
-        view1.setTextSize(14);
-        view1.setTextColor(Color.BLACK);
+        TextView view = new TextView(this);
+        view.setText(str);
+        view.setTextSize(20);
+        view.setTextColor(Color.BLACK);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.gravity = Gravity.LEFT;
-        view1.setLayoutParams(lp);
+        view.setLayoutParams(lp);
         //뷰 추가
-        container.addView(view1);
-        view1.setOnClickListener(new View.OnClickListener() {
+        container.addView(view);
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.messageToSend = str;
                 go_MessageSender_send(v);
             }
         });

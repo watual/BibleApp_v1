@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MessageSender_send extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,8 @@ public class MessageSender_send extends AppCompatActivity {
         Button but_send = (Button) findViewById(R.id.sendMessage);
         EditText text_message = (EditText) findViewById(R.id.text_message);
         EditText text_number = (EditText) findViewById(R.id.text_number);
+
+        text_message.setText(MainActivity.messageToSend);
 
         but_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,9 +39,6 @@ public class MessageSender_send extends AppCompatActivity {
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
                     e.printStackTrace();
-                    e.toString();
-                    TextView er = findViewById(R.id.errorText);
-                    er.setText(e.toString());
                 }
             }
         });
