@@ -12,8 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.io.BufferedReader;
@@ -25,6 +29,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class MessageSender_text extends AppCompatActivity {
+
+    public static int ITEMS = 0;
+    MyAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +67,24 @@ public class MessageSender_text extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    //페이저뷰 설정
+    public static class MyAdapter extends FragmentStatePagerAdapter {
+        public MyAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return null;
+            //페이지 반환
+        }
+
+        @Override
+        public int getCount() {
+            return ITEMS;
         }
     }
     private void make_textView(String str) {
