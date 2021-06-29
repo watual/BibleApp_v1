@@ -7,10 +7,17 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
             "호", "욜", "암", "옵", "욘", "미", "나", "합", "습", "학", "슥", "말", "마", "막", "눅", "요", "행",
             "롬", "고전", "고후", "갈", "엡", "빌", "골", "살전", "살후", "딤전", "딤후", "딛", "몬", "히", "약",
             "벧전", "벧후", "요1", "요2", "요3", "유", "계"};
+    public static int[] bibleList_jang = {};
     public static String messageToSend = "";
-
+    private Button btn_test;
+    private TextView asdf;
 
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.SEND_SMS};
     private static final int PERMISSIONS_REQUEST_CODE = 100;
@@ -38,6 +47,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //test버튼
+        btn_test = findViewById(R.id.activityMain_testbtn);
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, test1.class);
+                startActivity(intent);
+            }
+        });
+
+        //MessageSender로 이동하는 버튼
         btn_messageSender = findViewById(R.id.messageSender);
         btn_messageSender.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //SMS전송권한 요청
         int check_permission_sendSns = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
         if(check_permission_sendSns != PackageManager.PERMISSION_GRANTED){
             Toast.makeText(getApplicationContext(), "권한 허용안됨", Toast.LENGTH_SHORT).show();

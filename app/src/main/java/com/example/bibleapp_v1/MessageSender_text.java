@@ -10,28 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class MessageSender_text extends AppCompatActivity {
 
+    private ViewPager2 mPager;
+    private FragmentStateAdapter pagerAdapter;
     public static int ITEMS = 0;
-    MyAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,23 +62,6 @@ public class MessageSender_text extends AppCompatActivity {
         }
     }
 
-    //페이저뷰 설정
-    public static class MyAdapter extends FragmentStatePagerAdapter {
-        public MyAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return null;
-            //페이지 반환
-        }
-
-        @Override
-        public int getCount() {
-            return ITEMS;
-        }
-    }
     private void make_textView(String str) {
         LinearLayout container = (LinearLayout) findViewById(R.id.message_sender_text_scrollview);
         //TextView 생성

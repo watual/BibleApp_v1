@@ -23,6 +23,8 @@
         <activity android:name=".MessageSender"/>
         <activity android:name=".MessageSender_text"/>
         <activity android:name=".MessageSender_send"/>
+        <activity android:name=".test1"/>
+
     </application>
 
 </manifest>
