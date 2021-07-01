@@ -33,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
             "왕하", "대상", "대하", "스", "느", "에", "욥", "시", "잠", "전", "아", "사", "렘", "애", "겔", "단",
             "호", "욜", "암", "옵", "욘", "미", "나", "합", "습", "학", "슥", "말", "마", "막", "눅", "요", "행",
             "롬", "고전", "고후", "갈", "엡", "빌", "골", "살전", "살후", "딤전", "딤후", "딛", "몬", "히", "약",
-            "벧전", "벧후", "요1", "요2", "요3", "유", "계"};
-    public static int[] bibleList_jang = {};
+            "벧전", "벧후", "요일", "요이", "요삼", "유", "계"};
+    public static int[] bible_Jang = {50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42,
+            150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4, 28, 16, 24, 21, 28, 16,
+            16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22};
     public static String messageToSend = "";
     private Button btn_test;
-    private TextView asdf;
 
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.SEND_SMS};
     private static final int PERMISSIONS_REQUEST_CODE = 100;
@@ -46,16 +47,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //test버튼
-        btn_test = findViewById(R.id.activityMain_testbtn);
-        btn_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, test1.class);
-                startActivity(intent);
-            }
-        });
 
         //MessageSender로 이동하는 버튼
         btn_messageSender = findViewById(R.id.messageSender);

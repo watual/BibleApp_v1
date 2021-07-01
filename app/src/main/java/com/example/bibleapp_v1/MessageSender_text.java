@@ -29,62 +29,36 @@ public class MessageSender_text extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_sender_text);
-        get_bibleData();
-    }
-    //성경 텍스트 가져오기
-    private void get_bibleData() {
-        AssetManager am = getResources().getAssets();
-        InputStream is = null;
 
-        try {
-            is = am.open("test4.txt");
+        //viewPager
+        mPager = findViewById(R.id.message_sender_text_viewP);
+        //Adapter
+        int jang = 0;
+        for(int i=0;i<MainActivity.bibleList.length;i++){
+            if(MainActivity.bibleList_comp[i] == MainActivity.bibleParagraph[0]) {
+                jang = MainActivity.bible_Jang[i];
+            }
+        }
+        pagerAdapter = new MyAdapter(this, jang);  //count는 장의 갯수를 입력해줘야함
+        mPager.setAdapter(pagerAdapter);
+        mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
+        mPager.setCurrentItem(1);       //viewpage 개수 중 현재 위치
+        mPager.setOffscreenPageLimit(20);    //미리 로딩하는 앞뒤 페이지 수(default: 1)
 
-            BufferedReader bufrd = new BufferedReader(new InputStreamReader(is));
-
-            String line = "";
-            while((line = bufrd.readLine()) != null){
-                if(line.indexOf(MainActivity.bibleParagraph[0])==0){
-                    make_textView(line);
-                    make_textView("");
+        mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                if (positionOffsetPixels == 0) {
+                    mPager.setCurrentItem(position);
                 }
             }
 
-            is.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if(is != null) {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void make_textView(String str) {
-        LinearLayout container = (LinearLayout) findViewById(R.id.message_sender_text_scrollview);
-        //TextView 생성
-        TextView view = new TextView(this);
-        view.setText(str);
-        view.setTextSize(20);
-        view.setTextColor(Color.BLACK);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp.gravity = Gravity.LEFT;
-        view.setLayoutParams(lp);
-        //뷰 추가
-        container.addView(view);
-        view.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                MainActivity.messageToSend = str;
-                go_MessageSender_send(v);
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
             }
         });
-
-    }
-    public void go_MessageSender_send(View v) {
-        Intent intent = new Intent(MessageSender_text.this , MessageSender_send.class);
-        startActivity(intent);
+        MainActivity.bibleParagraph[1] = "1";   //MyAdapter 작업이 끝난 시점에 fragment에서 올린 장수 초기화
     }
 }
