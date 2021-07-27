@@ -52,14 +52,15 @@ public class MyAdapter_fragment extends Fragment {
 
 
         try {
-            is = am.open("test4.txt");
+            String t1 = "성경/" + MainActivity.bibleParagraph[0] + ".txt";
+
+            is = am.open(t1);
 
             BufferedReader bufrd = new BufferedReader(new InputStreamReader(is));
 
             String line = "";
-            boolean out_check = false;
             while((line = bufrd.readLine()) != null){
-                String[] line_check = {"창", "1"};
+                String[] line_check = {"", ""}; //ex) line_check[0]: 창, line_check[1]: n장
                 if( Character.isDigit(line.charAt(1)) ){
                     String tmp_line_check = line.substring(0, line.indexOf(":"));
                     line_check[0] = tmp_line_check.substring(0,1);
@@ -69,8 +70,7 @@ public class MyAdapter_fragment extends Fragment {
                     line_check[0] = tmp_line_check.substring(0,2);
                     line_check[1] = tmp_line_check.substring(2);
                 }
-                if(MainActivity.bibleParagraph[0].equals(line_check[0]) && MainActivity.bibleParagraph[1].equals(line_check[1])){
-                    out_check = true;
+                if(MainActivity.bibleParagraph[1].equals(line_check[1])){
                     //각각의 textview를 생성해 가져온 한줄의 성경데이터를 주입
                     LinearLayout container = (LinearLayout) view.findViewById(R.id.m_s_t_v_linearlayout);
                     //TextView 생성
@@ -92,8 +92,6 @@ public class MyAdapter_fragment extends Fragment {
                             startActivity(intent);
                         }
                     });
-                }else if(out_check){
-                    break;
                 }
             }
             //장수 올리기

@@ -35,7 +35,7 @@ public class MessageSender_text extends AppCompatActivity {
         //Adapter
         int jang = 0;
         for(int i=0;i<MainActivity.bibleList.length;i++){
-            if(MainActivity.bibleList_comp[i] == MainActivity.bibleParagraph[0]) {
+            if(MainActivity.bibleList[i] == MainActivity.bibleParagraph[0]) {
                 jang = MainActivity.bible_Jang[i];
             }
         }

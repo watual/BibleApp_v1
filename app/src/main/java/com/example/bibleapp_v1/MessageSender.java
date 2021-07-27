@@ -33,7 +33,7 @@ public class MessageSender extends AppCompatActivity {
             button_n.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity.bibleParagraph[0] = MainActivity.bibleList_comp[finalI];
+                    MainActivity.bibleParagraph[0] = MainActivity.bibleList[finalI];
                     Intent intent = new Intent(MessageSender.this , MessageSender_text.class);
                     startActivity(intent);
                 }
