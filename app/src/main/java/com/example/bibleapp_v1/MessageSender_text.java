@@ -25,6 +25,7 @@ public class MessageSender_text extends AppCompatActivity {
     private FragmentStateAdapter pagerAdapter;
     public static int ITEMS = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,5 +61,26 @@ public class MessageSender_text extends AppCompatActivity {
             }
         });
         MainActivity.bibleParagraph[1] = "1";   //MyAdapter 작업이 끝난 시점에 fragment에서 올린 장수 초기화
+    }
+    public void pageManage(int nowPage) {
+        LinearLayout container = findViewById(R.id.message_sender_text_linearlayout);
+        int messageSender_text_page_howMuch = 5;
+        for(int i=-(messageSender_text_page_howMuch/2);i<messageSender_text_page_howMuch/2;i++){
+            int n=0;
+            if(nowPage-i < 1){
+                n = 1-(nowPage-2);
+            }
+        }
+
+        TextView textV = new TextView(this);
+        textV.setText(nowPage);
+        textV.setTextSize(12);
+        textV.setTextColor(Color.BLACK);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.gravity = Gravity.LEFT;
+        textV.setLayoutParams(lp);
+        //뷰 추가
+        container.addView(textV);
+
     }
 }
